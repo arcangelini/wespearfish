@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "spearfishing-stuff/scale-section",
+	"version": "0.1.0",
+	"title": "Scale Section",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Cover section with moving scales.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "spearfishing-stuff",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,22 @@
+{
+	"name": "spearfishing-stuff",
+	"version": "0.1.0",
+	"description": "Example block scaffolded with Create Block tool.",
+	"author": "The WordPress Contributors",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"build:blocks": "wp-scripts build --webpack-src-dir=src/scale-section --output-path=build/scale-section && wp-scripts build --webpack-src-dir=src/weather --output-path=build/weather",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.8.0",
+		"npm": "^10.8.0"
+	}
+}
