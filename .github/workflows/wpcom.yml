@@ -3,18 +3,32 @@ name: Publish Website
 on:
   push:
     branches:
-      - main
+      - trunk
   workflow_dispatch:
 jobs:
-  Publish-Website:
-    name: Publish-Website
+  Build-Artifact-Action:
+    name: Build-Artifact-Action
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
       - name: Upload the artifact
         uses: actions/upload-artifact@v4
         with:
           name: wpcom
           path: |
             .
-            !.git*
+            !style.css 
+            !node_modules
+            !README.md
+            !package.json
+            !package-lock.json
+            !.editorconfig
+            !.git
+            !.gitignore
+            !src
