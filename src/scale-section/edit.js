@@ -32,10 +32,7 @@ import './editor.scss';
 export default function Edit() {
 	return (
 		<p { ...useBlockProps() }>
-			{ __(
-				'This is a SCALE section!',
-				'spearfishing-stuff'
-			) }
+			{ __( 'This is a SCALE section!', 'spearfishing-stuff' ) }
 		</p>
 	);
 }
