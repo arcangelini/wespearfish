@@ -1,11 +1,9 @@
 .wp-block-spearfishing-stuff-scale-section {
 	display: grid;
 	place-content: center;
-	background-color: white;
+	background-color: inherit;
 	background-image: url(../../assets/fish-background.svg);
-	background-size: 5%;  
-	height: 500px;
-	width: 1000px;
+	width: 100%;
 	animation: pan 100s linear infinite;
 	will-change: background-position;
 	border: none;

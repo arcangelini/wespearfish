@@ -16,6 +16,10 @@
 		"content": {
 			"type": "string",
 			"default": "Heading"
+		},
+		"height": {
+			"type": "number",
+			"default": 300
 		}
 	},
 	"editorScript": "file:./index.js",

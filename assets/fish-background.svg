@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-  <path d="M 40 20 C 40 31.046 31.046 40 20 40 C 20 28.954 11.046 20 0 20 C 11.046 20 20 11.046 20 0 C 31.046 0 40 8.954 40 20 Z" style="stroke: rgb(0, 0, 0); fill: none; stroke-width: 2px;"/>
+  <path d="M 40 20 C 40 31.046 31.046 40 20 40 C 20 28.954 11.046 20 0 20 C 11.046 20 20 11.046 20 0 C 31.046 0 40 8.954 40 20 Z" style="opacity: .3; stroke: rgb(0, 0, 0); fill: none; stroke-width: 2px;"/>
 </svg>
