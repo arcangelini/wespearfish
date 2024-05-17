@@ -1,24 +1,6 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 import './editor.scss';
 
 /**
@@ -29,10 +11,17 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit( { attributes, setAttributes } ) {
 	return (
-		<p { ...useBlockProps() }>
-			{ __( 'This is a SCALE section!', 'spearfishing-stuff' ) }
-		</p>
+		<div { ...useBlockProps() }>
+			<div className="wp-scale-section-content">
+				<RichText
+					tagName="h2"
+					placeholder={ __( 'Add your heading…', 'scale-section' ) }
+					value={ attributes.content }
+					onChange={ ( content ) => setAttributes( { content } ) }
+				/>
+			</div>
+		</div>
 	);
 }

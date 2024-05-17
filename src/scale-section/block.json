@@ -12,6 +12,12 @@
 		"html": false
 	},
 	"textdomain": "spearfishing-stuff",
+	"attributes": {
+		"content": {
+			"type": "string",
+			"default": "Heading"
+		}
+	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
