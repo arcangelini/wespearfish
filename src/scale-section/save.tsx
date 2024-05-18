@@ -1,6 +1,8 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
-export default function save( { attributes } ) {
+import React from 'react';
+
+export default function Save( { attributes } ) {
 	const { content, height } = attributes;
 	const blockProps = useBlockProps.save( {
 		style: { height: `${ height }px` },

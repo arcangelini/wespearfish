@@ -6,7 +6,7 @@
 	"license": "GPL-2.0-or-later",
 	"scripts": {
 		"build": "wp-scripts build --webpack-src-dir=src/scale-section --output-path=build/scale-section && wp-scripts build --webpack-src-dir=src/weather --output-path=build/weather",
-		"sync": "rsync -avz ./build $RSYNC_DESTINATION",
+		"sync": "rsync -avz --exclude={'.github','node_modules','src','.*','package*','webpack*'} ./ $RSYNC_DESTINATION",
 		"start": "wp-scripts start --webpack-src-dir=src/scale-section --output-path=build/scale-section && wp-scripts start --webpack-src-dir=src/weather --output-path=build/weather",
 		"lint:js": "wp-scripts lint-js",
 		"lint:css": "wp-scripts lint-style",
@@ -17,6 +17,7 @@
 		"npm": "^10.8.0"
 	},
 	"dependencies": {
+		"@types/wordpress__block-editor": "^11.5.14",
 		"@wordpress/block-editor": "^12.26.0",
 		"@wordpress/components": "^27.6.0",
 		"chalk": "^4.1.2",
