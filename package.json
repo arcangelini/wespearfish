@@ -7,7 +7,8 @@
 	"scripts": {
 		"build": "wp-scripts build --webpack-src-dir=src/scale-section --output-path=build/scale-section && wp-scripts build --webpack-src-dir=src/weather --output-path=build/weather",
 		"sync": "rsync -avz --exclude={'.github','node_modules','src','.*','package*','webpack*'} ./ $RSYNC_DESTINATION",
-		"start": "wp-scripts start --webpack-src-dir=src/scale-section --output-path=build/scale-section && wp-scripts start --webpack-src-dir=src/weather --output-path=build/weather",
+		"start:scale": "wp-scripts start --webpack-src-dir=src/scale-section --output-path=build/scale-section",
+		"start:weather": "wp-scripts start --webpack-src-dir=src/weather --output-path=build/weather",
 		"lint:js": "wp-scripts lint-js",
 		"lint:css": "wp-scripts lint-style",
 		"format": "wp-scripts format"

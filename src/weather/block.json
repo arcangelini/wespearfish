@@ -3,15 +3,24 @@
 	"apiVersion": 3,
 	"name": "spearfishing-stuff/weather",
 	"version": "0.1.0",
-	"title": "Weather Data",
+	"title": "Fishing Weather",
 	"category": "widgets",
-	"icon": "smiley",
-	"description": "Live weather data from Barcelona.",
+	"description": "Weather stuff.",
 	"example": {},
 	"supports": {
 		"html": false
 	},
 	"textdomain": "spearfishing-stuff",
+	"attributes": {
+		"content": {
+			"type": "string",
+			"default": "Heading"
+		},
+		"height": {
+			"type": "number",
+			"default": 300
+		}
+	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
