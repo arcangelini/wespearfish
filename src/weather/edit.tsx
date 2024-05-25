@@ -1,4 +1,3 @@
-import { __ } from "@wordpress/i18n";
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import { PanelBody } from "@wordpress/components";
 
@@ -18,9 +17,9 @@ export default function Edit({ attributes, setAttributes }) {
 					<div className="weather-data wind">
 						<Wind />
 						<div className="wind-speed">
-							<p>{__("Wind\nSpeed", "wespearfish")}</p>
+							<p>Wind<br />Speed</p>
 							{isLoading ? (
-								<p>{__("Loading...", "wespearfish")}</p>
+								<p>Loading...</p>
 							) : (
 								<p>{data.wind.windspeed} m</p>
 							)}
@@ -29,9 +28,9 @@ export default function Edit({ attributes, setAttributes }) {
 					<div className="weather-data waves">
 						<Waves />
 						<div className="wave-height">
-							<p>{__("Wave\nHeight", "wespearfish")}</p>
+							<p>Wave<br />Height</p>
 							{isLoading ? (
-								<p>{__("Loading...", "wespearfish")}</p>
+								<p>Loading...</p>
 							) : (
 								<p>{data.buoy.hm0} m</p>
 							)}
@@ -40,9 +39,9 @@ export default function Edit({ attributes, setAttributes }) {
 					<div className="weather-data temperature">
 						<Temperature />
 						<div className="water-temperature">
-							<p>{__("Water\nTemperature", "wespearfish")}</p>
+							<p>Water<br />Temperature</p>
 							{isLoading ? (
-								<p>{__("Loading...", "wespearfish")}</p>
+								<p>Loading...</p>
 							) : (
 								<p>{data.buoy.watertemp} m</p>
 							)}
@@ -52,7 +51,7 @@ export default function Edit({ attributes, setAttributes }) {
 			</div>
 			<InspectorControls>
 				<PanelBody
-					title={__("Block Settings", "wespearfish")}
+					title={"Block Settings"}
 					initialOpen={true}
 				></PanelBody>
 			</InspectorControls>
