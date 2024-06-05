@@ -18,10 +18,10 @@
 		"npm": "^10.8.0"
 	},
 	"dependencies": {
-		"@tanstack/react-query": "^5.40.0",
 		"@types/wordpress__block-editor": "^11.5.14",
 		"@wordpress/block-editor": "^12.26.0",
 		"@wordpress/components": "^27.6.0",
+		"@wordpress/server-side-render": "^5.0.0",
 		"chalk": "^4.1.2",
 		"react": "^18.3.1",
 		"webpack": "^5.91.0"
