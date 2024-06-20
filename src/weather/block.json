@@ -12,13 +12,9 @@
 	},
 	"textdomain": "spearfishing-stuff",
 	"attributes": {
-		"content": {
+		"time": {
 			"type": "string",
-			"default": "Heading"
-		},
-		"height": {
-			"type": "number",
-			"default": 300
+			"default": "current"
 		}
 	},
 	"editorScript": "file:./index.js",

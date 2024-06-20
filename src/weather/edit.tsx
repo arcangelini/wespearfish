@@ -1,20 +1,30 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import ServerSideRender from "@wordpress/server-side-render";
-import { PanelBody } from "@wordpress/components";
+import { PanelBody, RadioControl } from "@wordpress/components";
 import "./editor.scss";
 import React from "react";
 
 export default function Edit({ attributes, setAttributes }) {
 	const blockProps = useBlockProps();
+	const { time } = attributes;
 
 	return (
 		<>
 			<div {...blockProps}>
-				<ServerSideRender block="spearfishing-stuff/weather" />
+				<ServerSideRender block="spearfishing-stuff/weather" attributes={{time: time}}/>
 			</div>
 			<InspectorControls>
-				<PanelBody title="Block Settings" initialOpen={true}></PanelBody>
-				{/* Add settings in the future here */}
+				<PanelBody title="Data" initialOpen={true}>
+					<RadioControl
+						label="Weather type"
+						selected={time}
+						options={[
+							{ label: "Current", value: "current" },
+							{ label: "Forecast", value: "forecast" },
+						]}
+						onChange={(value) => setAttributes({ time: value })}
+					/>
+				</PanelBody>
 			</InspectorControls>
 		</>
 	);

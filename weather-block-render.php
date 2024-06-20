@@ -171,47 +171,82 @@ function convert_from_degree($degree) {
  * Renders the weather block.
  * @return string The rendered block.
  */
-function render_weather_block() {
-	$wind_data = get_wind_data();
-	$water_data = get_water_data();
+function render_weather_block( $block_attributes, $content ) {
+	require_once __DIR__ . '/weather-api.php';
 
-	return <<<HTML
-		<div tabindex='0' class='block-editor-block-list__block wp-block is-selected wp-block-spearfishing-stuff-weather' id='block-c1c77b42-4262-4198-b235-3c79e3b8ae38' role='document' aria-label='Block: Fishing Weather' data-block='c1c77b42-4262-4198-b235-3c79e3b8ae38' data-type='spearfishing-stuff/weather' data-title='Fishing Weather'>
-			<div class='wp-weather-content'>
-				<div class='weather-data heading'>
-					<h2>Current Weather Conditions</h2>
+	$weather_data = 'forecast' === $block_attributes['time'] ? get_forecast_weather_data() : get_current_weather_data();
+
+	if ( $block_attributes['time'] === 'forecast' ) {
+		$output = '';
+
+		if ( count( $weather_data ) === 4  ) {
+			$first_day = array_shift( $weather_data );			
+		}
+
+		foreach ( $weather_data as $day => $data ) {
+			$output .= '<div class="forecast-day"><h2>' . htmlspecialchars($day) . '</h2><div class="forecast-data">';
+		
+			$day = array_reduce(array_keys($data), function($carry, $key) use ($data) {
+				$time = $data[$key];
+
+				$carry .= <<<HTML
+					<div class="forecast-hour" data-rating="{$time['rating']}">
+						<strong>{$key}</strong>
+						<div class='wind' data-speed="{$time['wind_speed']}" >
+							<p>{$time['wind_speed']}<span class="unit">mph</span></p>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="25" height="25" style="transform: rotate({$time['wind_direction_to_degree']}deg);">
+								<path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
+							</svg>
+						</div>
+						<div class='wave' data-height="{$time['wave_height']}">
+							<p>{$time['wave_height']}<span class="unit">m</span></p>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="25" height="25" style="transform: rotate({$time['wave_direction_to_degree']}deg);">
+								<path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
+							</svg>
+						</div>
+					</div>
+					HTML;
+				return $carry;
+			}, '');
+		
+			$output .= $day . '</div></div>';
+		}
+
+		return <<<HTML
+			<div class='wp-block-spearfishing-stuff-weather'>
+				<div class='wp-spearfishing-weather-content forecast'>
+					$output
 				</div>
-				<div class='weather-data wind'>
-					<div class='direction'>
-						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='45' height='45' aria-hidden='true' focusable='false' style="transform: rotate({$wind_data['direction_degree']}deg);">
+			</div>
+			HTML;
+	}
+
+	if ( $block_attributes['time'] === 'current' ) {
+		return <<<HTML
+			<div tabindex='0' class='block-editor-block-list__block wp-block is-selected wp-block-spearfishing-stuff-weather' id='block-c1c77b42-4262-4198-b235-3c79e3b8ae38' role='document' aria-label='Block: Fishing Weather' data-block='c1c77b42-4262-4198-b235-3c79e3b8ae38' data-type='spearfishing-stuff/weather' data-title='Fishing Weather'>
+				<div class='wp-spearfishing-weather-content current'>
+					<div class='weather-data wind'>
+						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='45' height='45' aria-hidden='true' focusable='false' style="transform: rotate({$weather_data['wind_direction_to_degree']}deg);">
 							<path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z'></path>
 						</svg>
-						<p>{$wind_data['direction']} | {$wind_data['direction_from_degree']}°</p>
+						<p>{$weather_data['wind_direction']}</p>
 						<h3>Wind</h3>
+						<p class='speed'>{$weather_data['wind_speed']} | {$weather_data['wind_speed_max']}<span class="unit">mph</span></p>
+						<p class='temp'>{$weather_data['wind_temperature']}°<span class="unit">celsius</span></p>
+						
 					</div>
-					<div class='data'>
-						<span class='knots'>{$wind_data['speed']} | {$wind_data['speed_max']}</span>
-						<p>knots</p>
-						<span class='temp'>{$wind_data['temperature']}°</span>
-						<p>celsius</p>
-					</div>
-				</div>
-				<div class='weather-data water'>
-					<div class='direction'>
-						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='45' height='45' aria-hidden='true' focusable='false' style="transform: rotate({$water_data['direction_degree']}deg);">
+					<div class='weather-data wave'>
+						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='45' height='45' aria-hidden='true' focusable='false' style="transform: rotate({$weather_data['wave_direction_to_degree']}deg);">
 							<path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z'></path>
 						</svg>
-						<p>{$water_data['direction']} | {$water_data['direction_from_degree']}°</p>
-						<h3>Water</h3>
-					</div>
-					<div class='data'>
-						<span class='height'>{$water_data['height']} | {$water_data['height_max']}</span>
-						<p>meters</p>
-						<span class='temp'>{$water_data['temperature']}°</span>
-						<p>celsius</p>
+						<p>{$weather_data['wave_direction']}</p>
+						<h3>Waves</h3>
+						<p class='height'>{$weather_data['wave_height']} | {$weather_data['wave_height_max']}<span class="unit">meters</span></p>
+						<p class='temp'>{$weather_data['wave_temperature']}°<span class="unit">celsius</span></p>
 					</div>
 				</div>
 			</div>
-		</div>
-		HTML;
+			HTML;
+	}
+
 }
