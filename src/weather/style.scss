@@ -1,6 +1,6 @@
 .wp-block-spearfishing-stuff-weather {
 	margin: 20px auto;
-	max-width: 1440px !important;
+	max-width: 1440px;
 	width: 100%;
 
 	// Mobile responsive for screens smaller  than 500px
@@ -27,6 +27,7 @@
 			justify-content: space-between;
 			border-radius: 5px;
 			padding: 20px;
+			box-sizing: border-box;
 
 			svg {
 				fill: #fff;
@@ -48,6 +49,7 @@
 				overflow: hidden;
 				border: 1px solid #000;
 				border-radius: 5px;
+				box-sizing: border-box;
 
 				.forecast-hour {
 					display: flex;
@@ -62,15 +64,19 @@
 						opacity: 1;
 						height: 40px;
 						padding: 5px;
-						background-color: #ffcc00;
-						border: 1px solid black;
+						background-image: url(../../assets/line-background.svg);
+						animation: pan 10s linear infinite;
+						will-change: background-position;
 						margin: -1px;
+						border-bottom: 1px solid #000;
 					}
 
 					.wind,
 					.wave {
 						&.good {
-							color: green;
+							-webkit-text-stroke-color: rgb(0, 153, 8);
+							-webkit-text-stroke-width: 1px;
+							text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff;
 						}
 						&.bad {
 							color: var(--wp--preset--color--secondary);
@@ -106,6 +112,77 @@
 	}
 }
 
+/**
+ * Cover block
+ * probably not good to put this here long-term, but it's a start.
+ *
+ * TODO: move this to a better location.
+ */
+.wp-block-template-part .wp-block-cover {
+	height: 90vh;
+	max-height: 1000px;
+
+	.wp-block-cover__inner-container {
+		height: 100%;
+
+		.wp-block-group {
+			height: 100%;
+			grid-template-rows: auto 1fr auto;
+
+			& > * {
+				align-self: end;
+			}
+
+			& > :first-child {
+				align-self: start;
+			}
+		}
+	}
+}
+
 .wp-block-cover {
 	border-radius: 5px;
+}
+
+.home-page-links {
+	.wp-block-cover {
+		transition: all 0.5s ease-in-out;
+		filter: grayscale(80%);
+
+		&:hover {
+			filter: none;
+		}
+
+		.wp-block-cover__inner-container {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+
+			h2 {
+				height: 100%;
+
+				a {
+					text-decoration: none;
+					height: 100%;
+					display: block;
+					align-content: center;
+				}
+			}
+		}
+	}
+}
+
+@keyframes pan {
+	0% {
+		background-position: 0% 0%;
+	}
+	100% {
+		background-position: 100% 0%;
+	}
+}
+
+@media screen and ( max-width: 480px ) {
+	.weather-data > p:first-of-type {
+		display: none;
+	}
 }

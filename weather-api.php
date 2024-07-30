@@ -189,12 +189,7 @@ function fetch_forecast_weather_data() {
 		}
 	}
 
-	$last_day = end( $forecast_weather_data );
-	if ( ! isset( $last_day[07]['wind_speed'] ) ) {
-		$forecast_weather_data = array_slice( $forecast_weather_data, 0, -1 );
-	}
-
-	$filtered_forecast_weather_data = calculate_hour_rating($forecast_weather_data);
+	$filtered_forecast_weather_data = calculate_hour_rating( $forecast_weather_data );
 
 	return $filtered_forecast_weather_data;
 }
@@ -217,9 +212,9 @@ function get_forecast_weather_data() {
 	$cache_key       = 'spearfishing_forecast_weather_data';
 	$cached_response = wp_cache_get( $cache_key );
 
-	if ( true ) {
+	if ( ! $cached_response ) {
 		$forecast_weather_data = fetch_forecast_weather_data();
-		wp_cache_set( $cache_key, $forecast_weather_data, '', HOUR_IN_SECONDS );
+		wp_cache_set( $cache_key, $forecast_weather_data, '', MINUTE_IN_SECONDS * 30 );
 
 		return $forecast_weather_data;
 	}

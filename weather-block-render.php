@@ -232,7 +232,7 @@ function render_weather_block( $block_attributes, $content ) {
 						<p>{$weather_data['wind_direction']}</p>
 						<h3>Wind</h3>
 						<p class='speed'>{$weather_data['wind_speed']} | {$weather_data['wind_speed_max']}<span class="unit">mph</span></p>
-						<p class='temp'>{$weather_data['wind_temperature']}°<span class="unit">celsius</span></p>
+						<p class='temp'>{$weather_data['wind_temperature']}°<span class="unit">c</span></p>
 						
 					</div>
 					<div class='weather-data wave'>
@@ -241,8 +241,8 @@ function render_weather_block( $block_attributes, $content ) {
 						</svg>
 						<p>{$weather_data['wave_direction']}</p>
 						<h3>Waves</h3>
-						<p class='height'>{$weather_data['wave_height']} | {$weather_data['wave_height_max']}<span class="unit">meters</span></p>
-						<p class='temp'>{$weather_data['wave_temperature']}°<span class="unit">celsius</span></p>
+						<p class='height'>{$weather_data['wave_height']} | {$weather_data['wave_height_max']}<span class="unit">m</span></p>
+						<p class='temp'>{$weather_data['wave_temperature']}°<span class="unit">c</span></p>
 					</div>
 				</div>
 			</div>
