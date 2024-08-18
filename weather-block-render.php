@@ -213,7 +213,7 @@ function render_weather_block( $block_attributes, $content ) {
 		}
 
 		return <<<HTML
-			<div class='wp-block-spearfishing-stuff-weather'>
+			<div class='wp-block-wespearfish-weather'>
 				<div class='wp-spearfishing-weather-content forecast'>
 					$output
 				</div>
@@ -223,7 +223,7 @@ function render_weather_block( $block_attributes, $content ) {
 
 	if ( $block_attributes['time'] === 'current' ) {
 		return <<<HTML
-			<div tabindex='0' class='block-editor-block-list__block wp-block is-selected wp-block-spearfishing-stuff-weather' id='block-c1c77b42-4262-4198-b235-3c79e3b8ae38' role='document' aria-label='Block: Fishing Weather' data-block='c1c77b42-4262-4198-b235-3c79e3b8ae38' data-type='spearfishing-stuff/weather' data-title='Fishing Weather'>
+			<div tabindex='0' class='block-editor-block-list__block wp-block is-selected wp-block-wespearfish-weather' id='block-c1c77b42-4262-4198-b235-3c79e3b8ae38' role='document' aria-label='Block: Fishing Weather' data-block='c1c77b42-4262-4198-b235-3c79e3b8ae38' data-type='wespearfish/weather' data-title='Fishing Weather'>
 				<div class='wp-spearfishing-weather-content current'>
 					<div class='weather-data wind'>
 						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='45' height='45' aria-hidden='true' focusable='false' style="transform: rotate({$weather_data['wind_direction_to_degree']}deg);">

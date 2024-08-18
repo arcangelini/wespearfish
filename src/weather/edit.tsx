@@ -11,7 +11,7 @@ export default function Edit({ attributes, setAttributes }) {
 	return (
 		<>
 			<div {...blockProps}>
-				<ServerSideRender block="spearfishing-stuff/weather" attributes={{time: time}}/>
+				<ServerSideRender block="wespearfish/weather" attributes={{time: time}}/>
 			</div>
 			<InspectorControls>
 				<PanelBody title="Data" initialOpen={true}>

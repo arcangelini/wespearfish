@@ -105,7 +105,7 @@ function get_current_weather_data() {
 	$cache_key       = 'spearfishing_current_weather_data';
 	$cached_response = wp_cache_get( $cache_key );
 
-	if ( true ) {
+	if ( $cached_response ) {
 		$current_weather_data = fetch_current_weather_data();
 		wp_cache_set( $cache_key, $current_weather_data, '', 600 );
 

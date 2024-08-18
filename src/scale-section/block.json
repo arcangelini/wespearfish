@@ -1,7 +1,7 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "spearfishing-stuff/scale-section",
+	"name": "wespearfish/scale-section",
 	"version": "0.1.0",
 	"title": "Scale Section",
 	"category": "widgets",
@@ -11,7 +11,7 @@
 	"supports": {
 		"html": false
 	},
-	"textdomain": "spearfishing-stuff",
+	"textdomain": "wespearfish",
 	"attributes": {
 		"content": {
 			"type": "string",
